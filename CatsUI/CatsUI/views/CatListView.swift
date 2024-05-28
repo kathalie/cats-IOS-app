@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CatsNetworking
+import FirebaseCrashlytics
 
 class CatViewModel: ObservableObject {
     @Published var cats: [CatModelWithBreeds] = []
@@ -24,6 +25,7 @@ class CatViewModel: ObservableObject {
             self.isLoading = true
         }
         do {
+            Crashlytics.crashlytics().log("Loading \(limit) cats for page \(page)")
             let newCats = try await CatsNetworking.getCatsWithBreeds(limit: limit, page: page)
             DispatchQueue.main.async {
                 self.page += 1
@@ -31,15 +33,14 @@ class CatViewModel: ObservableObject {
                 self.isLoading = false
             }
         } catch let error {
+            Crashlytics.crashlytics().record(error: error)
+            
             DispatchQueue.main.async {
                 self.isLoading = false
             }
             
             throw error
         }
-
-
-        
     }
 }
 
@@ -54,14 +55,15 @@ struct CatListView: View {
         } catch let error {
             print(error)
             
-            errorOccured = true            
+            errorOccured = true
         }
     }
     
     var body: some View {
         ScrollView {
             Button("Crash") {
-              fatalError("Crash was triggered")
+                Crashlytics.crashlytics().log("Tapping 'Crash' button")
+                fatalError("Crash was triggered")
             }
             Text("Cats")
                 .font(.title)
@@ -69,6 +71,7 @@ struct CatListView: View {
             LazyVStack(spacing: 10, pinnedViews: [.sectionHeaders]){
                 ForEach(Array(self.catModel.cats.enumerated()), id: \.offset) { _, cat in
                     Button(action: {
+                        Crashlytics.crashlytics().setCustomValue(cat.id, forKey: "last_tapped_row_cat_id")
                         self.detailsFor = cat
                     }) {
                         CatTileView(for: cat)
@@ -94,9 +97,13 @@ struct CatListView: View {
                 title: Text("Error"),
                 message: Text("Something went wrong"),
                 primaryButton: .cancel({
+//                    fatalError("Something went wrong was canceled.")
+                    
                     errorOccured = false
                 }),
                 secondaryButton: .default(Text("Retry")) {
+//                    fatalError("Failed to load more cats.")
+
                     Task { await self.loadMoreCats() }
                     errorOccured = false
                 }

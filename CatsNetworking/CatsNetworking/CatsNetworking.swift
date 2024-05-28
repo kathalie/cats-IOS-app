@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseCrashlytics
 import FirebasePerformance
 
 public class CatsNetworking {
@@ -17,8 +18,6 @@ public class CatsNetworking {
             URLQueryItem(name: "has_breeds", value: String(1))
         ])
         
-        print(url)
-        
         return url
     }
     
@@ -27,29 +26,32 @@ public class CatsNetworking {
         
         let url = baseUrl.appending(path: id)
         
-        print(url)
-        
         return url
     }
     
     private static func getCats(limit: Int = 10, page: Int = 0) async throws -> [CatModel]{
         let catsWithBreedsUrl = buildCatsWithBreedsUrl(limit: limit, page: page)
         
-        guard let metric = HTTPMetric(url: catsWithBreedsUrl, httpMethod: .get) else {
-            print("Failed to initialize HTTPMetric")
-            
-            return []
-        }
-        metric.start()
+        Crashlytics.crashlytics().setCustomValue(catsWithBreedsUrl, forKey: "last_fetched_url")
+        Crashlytics.crashlytics().log("Fetching cats by URL: \(catsWithBreedsUrl)")
+        
+//        guard let metric = HTTPMetric(url: catsWithBreedsUrl, httpMethod: .get) else {
+//            print("Failed to initialize HTTPMetric")
+//            
+//            return []
+//        }
+//        metric.start()
         
         let (data, response) = try await URLSession.shared.data(from: catsWithBreedsUrl)
         
-        if let httpResponse = response as? HTTPURLResponse {
-            metric.responseCode = httpResponse.statusCode
-        }
-        metric.stop()
+//        if let httpResponse = response as? HTTPURLResponse {
+//            metric.responseCode = httpResponse.statusCode
+//        }
+//        metric.stop()
         
         let cats = try JSONDecoder().decode([CatModel].self, from: data)
+        
+        Crashlytics.crashlytics().log("Cats are loaded and decoded.")
         
         return cats
     }
@@ -57,21 +59,26 @@ public class CatsNetworking {
     private static func getCatWithBreeds(for cat: CatModel) async throws -> CatModelWithBreeds? {
         let catUrl = self.buildCatUrl(id: cat.id)
         
-        guard let metric = HTTPMetric(url: catUrl, httpMethod: .get) else {
-            print("Failed to initialize HTTPMetric")
-            
-            return nil
-        }
-        metric.start()
+        Crashlytics.crashlytics().setCustomValue(catUrl, forKey: "last_fetched_url")
+        Crashlytics.crashlytics().log("Fetching a cat with breeds by URL: \(catUrl)")
+        
+//        guard let metric = HTTPMetric(url: catUrl, httpMethod: .get) else {
+//            print("Failed to initialize HTTPMetric")
+//            
+//            return nil
+//        }
+//        metric.start()
         
         let (data, response) = try await URLSession.shared.data(from: catUrl)
         
-        if let httpResponse = response as? HTTPURLResponse {
-            metric.responseCode = httpResponse.statusCode
-        }
-        metric.stop()
+//        if let httpResponse = response as? HTTPURLResponse {
+//            metric.responseCode = httpResponse.statusCode
+//        }
+//        metric.stop()
         
         let decodedCat = try JSONDecoder().decode(CatModelWithBreeds.self, from: data)
+        
+        Crashlytics.crashlytics().log("Cat with breeds is loaded and decoded.")
         
         return decodedCat
     }

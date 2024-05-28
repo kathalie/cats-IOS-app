@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C9865F22C0630B8004211DC /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 8C9865F12C0630B8004211DC /* FirebasePerformance */; };
 		8CA1D1062C03558400C39C6A /* CatsNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CA1D1052C03558400C39C6A /* CatsNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8CA1D1102C0355AA00C39C6A /* CatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA1D10D2C0355AA00C39C6A /* CatModel.swift */; };
 		8CA1D1112C0355AA00C39C6A /* CatsNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA1D10E2C0355AA00C39C6A /* CatsNetworking.swift */; };
+		8CA98FB52C064AEE00D073AD /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8CA98FB42C064AEE00D073AD /* FirebaseCrashlytics */; };
+		8CA98FD12C064AEE00D073AD /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 8CA98FD02C064AEE00D073AD /* FirebasePerformance */; };
+		8CA98FDE2C064D0C00D073AD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CA98FDD2C064D0C00D073AD /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -17,6 +21,7 @@
 		8CA1D1052C03558400C39C6A /* CatsNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatsNetworking.h; sourceTree = "<group>"; };
 		8CA1D10D2C0355AA00C39C6A /* CatModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatModel.swift; sourceTree = "<group>"; };
 		8CA1D10E2C0355AA00C39C6A /* CatsNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatsNetworking.swift; sourceTree = "<group>"; };
+		8CA98FDD2C064D0C00D073AD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -24,6 +29,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CA98FD12C064AEE00D073AD /* FirebasePerformance in Frameworks */,
+				8CA98FB52C064AEE00D073AD /* FirebaseCrashlytics in Frameworks */,
+				8C9865F22C0630B8004211DC /* FirebasePerformance in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -33,6 +41,7 @@
 		8CA1D0F82C03558400C39C6A = {
 			isa = PBXGroup;
 			children = (
+				8CA98FDD2C064D0C00D073AD /* GoogleService-Info.plist */,
 				8CA1D1042C03558400C39C6A /* CatsNetworking */,
 				8CA1D1032C03558400C39C6A /* Products */,
 			);
@@ -84,6 +93,11 @@
 			dependencies = (
 			);
 			name = CatsNetworking;
+			packageProductDependencies = (
+				8C9865F12C0630B8004211DC /* FirebasePerformance */,
+				8CA98FB42C064AEE00D073AD /* FirebaseCrashlytics */,
+				8CA98FD02C064AEE00D073AD /* FirebasePerformance */,
+			);
 			productName = CatsNetworking;
 			productReference = 8CA1D1022C03558400C39C6A /* CatsNetworking.framework */;
 			productType = "com.apple.product-type.framework";
@@ -112,6 +126,9 @@
 				Base,
 			);
 			mainGroup = 8CA1D0F82C03558400C39C6A;
+			packageReferences = (
+				8C9865C42C0630B8004211DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 8CA1D1032C03558400C39C6A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -126,6 +143,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CA98FDE2C064D0C00D073AD /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +296,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D85QWSUNYA;
@@ -297,6 +316,7 @@
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "ua.edu.ukma.apple-env.verkhohliad.CatsNetworking";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -336,6 +356,7 @@
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "ua.edu.ukma.apple-env.verkhohliad.CatsNetworking";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -368,6 +389,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8C9865C42C0630B8004211DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.26.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8C9865F12C0630B8004211DC /* FirebasePerformance */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8C9865C42C0630B8004211DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebasePerformance;
+		};
+		8CA98FB42C064AEE00D073AD /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8C9865C42C0630B8004211DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		8CA98FD02C064AEE00D073AD /* FirebasePerformance */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8C9865C42C0630B8004211DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebasePerformance;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8CA1D0F92C03558400C39C6A /* Project object */;
 }
