@@ -35,7 +35,11 @@ public class CatsNetworking {
     private static func getCats(limit: Int = 10, page: Int = 0) async throws -> [CatModel]{
         let catsWithBreedsUrl = buildCatsWithBreedsUrl(limit: limit, page: page)
         
-        guard let metric = HTTPMetric(url: catsWithBreedsUrl, httpMethod: .get) else { return [] }
+        guard let metric = HTTPMetric(url: catsWithBreedsUrl, httpMethod: .get) else {
+            print("Failed to initialize HTTPMetric")
+            
+            return []
+        }
         metric.start()
         
         let (data, response) = try await URLSession.shared.data(from: catsWithBreedsUrl)
@@ -53,7 +57,11 @@ public class CatsNetworking {
     private static func getCatWithBreeds(for cat: CatModel) async throws -> CatModelWithBreeds? {
         let catUrl = self.buildCatUrl(id: cat.id)
         
-        guard let metric = HTTPMetric(url: catUrl, httpMethod: .get) else { return nil }
+        guard let metric = HTTPMetric(url: catUrl, httpMethod: .get) else {
+            print("Failed to initialize HTTPMetric")
+            
+            return nil
+        }
         metric.start()
         
         let (data, response) = try await URLSession.shared.data(from: catUrl)
