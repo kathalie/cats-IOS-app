@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebasePerformance
 
 public class CatsNetworking {
     private static func buildCatsWithBreedsUrl(limit: Int = 10, page: Int = 0) -> URL {
@@ -31,24 +32,56 @@ public class CatsNetworking {
         return url
     }
     
-    public static func getCats(limit: Int = 10, page: Int = 0) async throws -> [CatModelWithBreeds]{
-        let decoder = JSONDecoder()
-        
+    private static func getCats(limit: Int = 10, page: Int = 0) async throws -> [CatModel]{
         let catsWithBreedsUrl = buildCatsWithBreedsUrl(limit: limit, page: page)
-        let (data, _) = try await URLSession.shared.data(from: catsWithBreedsUrl)
-        let decodedCats = try decoder.decode([CatModel].self, from: data)
         
-        var cats: [CatModelWithBreeds] = [];
+        guard let metric = HTTPMetric(url: catsWithBreedsUrl, httpMethod: .get) else { return [] }
+        metric.start()
         
-        for decodedCat in decodedCats {
-            let catUrl = self.buildCatUrl(id: decodedCat.id)
-            let (data, _) = try await URLSession.shared.data(from: catUrl)
-            let decodedCat = try decoder.decode(CatModelWithBreeds.self, from: data)
-            cats.append(decodedCat)
+        let (data, response) = try await URLSession.shared.data(from: catsWithBreedsUrl)
+        
+        if let httpResponse = response as? HTTPURLResponse {
+            metric.responseCode = httpResponse.statusCode
         }
+        metric.stop()
         
+        let cats = try JSONDecoder().decode([CatModel].self, from: data)
         
         return cats
+    }
+    
+    private static func getCatWithBreeds(for cat: CatModel) async throws -> CatModelWithBreeds? {
+        let catUrl = self.buildCatUrl(id: cat.id)
+        
+        guard let metric = HTTPMetric(url: catUrl, httpMethod: .get) else { return nil }
+        metric.start()
+        
+        let (data, response) = try await URLSession.shared.data(from: catUrl)
+        
+        if let httpResponse = response as? HTTPURLResponse {
+            metric.responseCode = httpResponse.statusCode
+        }
+        metric.stop()
+        
+        let decodedCat = try JSONDecoder().decode(CatModelWithBreeds.self, from: data)
+        
+        return decodedCat
+    }
+    
+    
+    
+    public static func getCatsWithBreeds(limit: Int = 10, page: Int = 0) async throws -> [CatModelWithBreeds]{
+        let cats = try await getCats(limit: limit, page: page)
+        
+        var catsWithBreeds: [CatModelWithBreeds] = [];
+        
+        for cat in cats {
+            if let catWithBreeds = try await getCatWithBreeds(for: cat) {
+                catsWithBreeds.append(catWithBreeds)
+            }
+        }
+        
+        return catsWithBreeds
     }
 }
 

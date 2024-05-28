@@ -24,7 +24,7 @@ class CatViewModel: ObservableObject {
             self.isLoading = true
         }
         do {
-            let newCats = try await CatsNetworking.getCats(limit: limit, page: page)
+            let newCats = try await CatsNetworking.getCatsWithBreeds(limit: limit, page: page)
             DispatchQueue.main.async {
                 self.page += 1
                 self.cats.append(contentsOf: newCats)
