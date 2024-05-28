@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8CA1D1062C03558400C39C6A /* CatsNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CA1D1052C03558400C39C6A /* CatsNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8CA1D10F2C0355AA00C39C6A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8CA1D10C2C0355AA00C39C6A /* README.md */; };
 		8CA1D1102C0355AA00C39C6A /* CatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA1D10D2C0355AA00C39C6A /* CatModel.swift */; };
 		8CA1D1112C0355AA00C39C6A /* CatsNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA1D10E2C0355AA00C39C6A /* CatsNetworking.swift */; };
 /* End PBXBuildFile section */
@@ -16,7 +15,6 @@
 /* Begin PBXFileReference section */
 		8CA1D1022C03558400C39C6A /* CatsNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CatsNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CA1D1052C03558400C39C6A /* CatsNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatsNetworking.h; sourceTree = "<group>"; };
-		8CA1D10C2C0355AA00C39C6A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8CA1D10D2C0355AA00C39C6A /* CatModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatModel.swift; sourceTree = "<group>"; };
 		8CA1D10E2C0355AA00C39C6A /* CatsNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatsNetworking.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -53,7 +51,6 @@
 			children = (
 				8CA1D10D2C0355AA00C39C6A /* CatModel.swift */,
 				8CA1D10E2C0355AA00C39C6A /* CatsNetworking.swift */,
-				8CA1D10C2C0355AA00C39C6A /* README.md */,
 				8CA1D1052C03558400C39C6A /* CatsNetworking.h */,
 			);
 			path = CatsNetworking;
@@ -129,7 +126,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CA1D10F2C0355AA00C39C6A /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

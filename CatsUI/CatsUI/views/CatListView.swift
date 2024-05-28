@@ -60,6 +60,9 @@ struct CatListView: View {
     
     var body: some View {
         ScrollView {
+            Button("Crash") {
+              fatalError("Crash was triggered")
+            }
             Text("Cats")
                 .font(.title)
                 .padding(.vertical, 12.0)
