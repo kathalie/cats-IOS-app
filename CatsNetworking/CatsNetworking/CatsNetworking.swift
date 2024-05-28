@@ -35,19 +35,19 @@ public class CatsNetworking {
         Crashlytics.crashlytics().setCustomValue(catsWithBreedsUrl, forKey: "last_fetched_url")
         Crashlytics.crashlytics().log("Fetching cats by URL: \(catsWithBreedsUrl)")
         
-//        guard let metric = HTTPMetric(url: catsWithBreedsUrl, httpMethod: .get) else {
-//            print("Failed to initialize HTTPMetric")
-//            
-//            return []
-//        }
-//        metric.start()
+        guard let metric = HTTPMetric(url: catsWithBreedsUrl, httpMethod: .get) else {
+            print("Failed to initialize HTTPMetric")
+            
+            return []
+        }
+        metric.start()
         
         let (data, response) = try await URLSession.shared.data(from: catsWithBreedsUrl)
         
-//        if let httpResponse = response as? HTTPURLResponse {
-//            metric.responseCode = httpResponse.statusCode
-//        }
-//        metric.stop()
+        if let httpResponse = response as? HTTPURLResponse {
+            metric.responseCode = httpResponse.statusCode
+        }
+        metric.stop()
         
         let cats = try JSONDecoder().decode([CatModel].self, from: data)
         
@@ -62,19 +62,19 @@ public class CatsNetworking {
         Crashlytics.crashlytics().setCustomValue(catUrl, forKey: "last_fetched_url")
         Crashlytics.crashlytics().log("Fetching a cat with breeds by URL: \(catUrl)")
         
-//        guard let metric = HTTPMetric(url: catUrl, httpMethod: .get) else {
-//            print("Failed to initialize HTTPMetric")
-//            
-//            return nil
-//        }
-//        metric.start()
+        guard let metric = HTTPMetric(url: catUrl, httpMethod: .get) else {
+            print("Failed to initialize HTTPMetric")
+            
+            return nil
+        }
+        metric.start()
         
         let (data, response) = try await URLSession.shared.data(from: catUrl)
         
-//        if let httpResponse = response as? HTTPURLResponse {
-//            metric.responseCode = httpResponse.statusCode
-//        }
-//        metric.stop()
+        if let httpResponse = response as? HTTPURLResponse {
+            metric.responseCode = httpResponse.statusCode
+        }
+        metric.stop()
         
         let decodedCat = try JSONDecoder().decode(CatModelWithBreeds.self, from: data)
         
