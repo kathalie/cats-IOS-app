@@ -52,6 +52,7 @@
 		8CA1D0E22C029FCA00C39C6A /* CatQualityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA1D0E12C029FCA00C39C6A /* CatQualityView.swift */; };
 		8CA1D1132C03560900C39C6A /* CatsNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA1D1122C03560900C39C6A /* CatsNetworking.framework */; };
 		8CA1D1142C03560900C39C6A /* CatsNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA1D1122C03560900C39C6A /* CatsNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8CC7AEE02C0A635D00002915 /* infoplist_util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC7AEDF2C0A635D00002915 /* infoplist_util.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -80,6 +81,7 @@
 		8CA1D0DC2C025EE400C39C6A /* CatDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatDetailsView.swift; sourceTree = "<group>"; };
 		8CA1D0E12C029FCA00C39C6A /* CatQualityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatQualityView.swift; sourceTree = "<group>"; };
 		8CA1D1122C03560900C39C6A /* CatsNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CatsNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CC7AEDF2C0A635D00002915 /* infoplist_util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = infoplist_util.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 		8CA1D0AA2C023D0500C39C6A /* CatsUI */ = {
 			isa = PBXGroup;
 			children = (
+				8CC7AEDE2C0A632F00002915 /* utils */,
 				8CA1D0E32C029FD200C39C6A /* views */,
 				8CA1D0AB2C023D0500C39C6A /* CatsUIApp.swift */,
 				8CA1D0AD2C023D0500C39C6A /* ContentView.swift */,
@@ -183,6 +186,14 @@
 				8CA1D0DC2C025EE400C39C6A /* CatDetailsView.swift */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		8CC7AEDE2C0A632F00002915 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				8CC7AEDF2C0A635D00002915 /* infoplist_util.swift */,
+			);
+			path = utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,6 +340,7 @@
 				8CA1D0DD2C025EE400C39C6A /* CatDetailsView.swift in Sources */,
 				8CA1D0AE2C023D0500C39C6A /* ContentView.swift in Sources */,
 				8CA1D0D82C024DF900C39C6A /* CatTileView.swift in Sources */,
+				8CC7AEE02C0A635D00002915 /* infoplist_util.swift in Sources */,
 				8CA1D0D62C024DF600C39C6A /* CatListView.swift in Sources */,
 				8CA1D0AC2C023D0500C39C6A /* CatsUIApp.swift in Sources */,
 			);
@@ -471,6 +483,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D85QWSUNYA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CatsUI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -509,6 +522,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D85QWSUNYA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CatsUI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

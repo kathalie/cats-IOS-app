@@ -9,16 +9,19 @@ import SwiftUI
 import CatsNetworking
 import FirebaseCrashlytics
 
-class CatViewModel: ObservableObject {
+extension String: Error {}
+
+class ViewModel: ObservableObject {
     @Published var cats: [CatModelWithBreeds] = []
     @Published var isLoading: Bool = false
+    let api: Api? = getApi()
     
     private var page = 0
     private let limit = 10
     
     init() {}
     
-    func loadMoreCats() async throws {
+    func loadMoreItems() async throws {
         guard !isLoading else { return }
         
         DispatchQueue.main.async {
@@ -26,7 +29,23 @@ class CatViewModel: ObservableObject {
         }
         do {
             Crashlytics.crashlytics().log("Loading \(limit) cats for page \(page)")
-            let newCats = try await CatsNetworking.getCatsWithBreeds(limit: limit, page: page)
+            
+            guard let api
+            else {
+                Crashlytics.crashlytics().log("Failed to read from Info.plist")
+                
+                print("Failed to read from Info.plist")
+                
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                }
+                
+                throw "Something went wrong"
+            }
+            
+            let networking = Networking(api: api)
+            
+            let newCats = try await networking.getManyWithBreeds(limit: limit, page: page)
             DispatchQueue.main.async {
                 self.page += 1
                 self.cats.append(contentsOf: newCats)
@@ -45,17 +64,25 @@ class CatViewModel: ObservableObject {
 }
 
 struct CatListView: View {
-    @StateObject private var catModel = CatViewModel()
+    @StateObject private var viewModel = ViewModel()
     @State private var detailsFor: CatModelWithBreeds?
     @State private var errorOccured: Bool = false
     
-    private func loadMoreCats() async {
+    private func loadMoreItems() async {
         do {
-            try await catModel.loadMoreCats()
+            try await viewModel.loadMoreItems()
         } catch let error {
             print(error)
             
             errorOccured = true
+        }
+    }
+    
+    private var mainHeaderCaption: String {
+        switch self.viewModel.api {
+        case .cats: return "Cats"
+        case .dogs: return "Dogs"
+        default: return ""
         }
     }
     
@@ -65,11 +92,11 @@ struct CatListView: View {
                 Crashlytics.crashlytics().log("Tapping 'Crash' button")
                 fatalError("Crash was triggered")
             }
-            Text("Cats")
+            Text(self.mainHeaderCaption)
                 .font(.title)
                 .padding(.vertical, 12.0)
             LazyVStack(spacing: 10, pinnedViews: [.sectionHeaders]){
-                ForEach(Array(self.catModel.cats.enumerated()), id: \.offset) { _, cat in
+                ForEach(Array(self.viewModel.cats.enumerated()), id: \.offset) { _, cat in
                     Button(action: {
                         Crashlytics.crashlytics().setCustomValue(cat.id, forKey: "last_tapped_row_cat_id")
                         self.detailsFor = cat
@@ -78,19 +105,19 @@ struct CatListView: View {
                     }
                     .buttonStyle(PlainButtonStyle())
                     .task {
-                        if cat.id == catModel.cats.last?.id {
-                            await self.loadMoreCats()
+                        if cat.id == viewModel.cats.last?.id {
+                            await self.loadMoreItems()
                         }
                     }
                 }
             }
-            if catModel.isLoading {
+            if viewModel.isLoading {
                 ProgressView()
                     .padding()
             }
         }
         .task {
-            await self.loadMoreCats()
+            await self.loadMoreItems()
         }
         .alert(isPresented: $errorOccured) {
             Alert(
@@ -104,7 +131,7 @@ struct CatListView: View {
                 secondaryButton: .default(Text("Retry")) {
 //                    fatalError("Failed to load more cats.")
 
-                    Task { await self.loadMoreCats() }
+                    Task { await self.loadMoreItems() }
                     errorOccured = false
                 }
             )
