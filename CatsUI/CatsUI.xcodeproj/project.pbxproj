@@ -40,7 +40,6 @@
 		8C9864E92C054C81004211DC /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 8C9864E82C054C81004211DC /* FirebaseStorage */; };
 		8C9864EB2C054C81004211DC /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 8C9864EA2C054C81004211DC /* FirebaseStorageCombine-Community */; };
 		8C9864ED2C054C81004211DC /* FirebaseVertexAI-Preview in Frameworks */ = {isa = PBXBuildFile; productRef = 8C9864EC2C054C81004211DC /* FirebaseVertexAI-Preview */; };
-		8C9864F02C05F6E2004211DC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8C9864EF2C05F6E2004211DC /* README.md */; };
 		8C9865842C062FFE004211DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C9865832C062FFE004211DC /* GoogleService-Info.plist */; };
 		8CA1D0AC2C023D0500C39C6A /* CatsUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA1D0AB2C023D0500C39C6A /* CatsUIApp.swift */; };
 		8CA1D0AE2C023D0500C39C6A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA1D0AD2C023D0500C39C6A /* ContentView.swift */; };
@@ -70,7 +69,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8C9864EF2C05F6E2004211DC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8C9865832C062FFE004211DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8CA1D0A82C023D0500C39C6A /* CatsUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatsUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CA1D0AB2C023D0500C39C6A /* CatsUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsUIApp.swift; sourceTree = "<group>"; };
@@ -134,7 +132,6 @@
 			isa = PBXGroup;
 			children = (
 				8C9865832C062FFE004211DC /* GoogleService-Info.plist */,
-				8C9864EF2C05F6E2004211DC /* README.md */,
 				8CA1D0AA2C023D0500C39C6A /* CatsUI */,
 				8CA1D0A92C023D0500C39C6A /* Products */,
 				8CA1D0D92C024E1200C39C6A /* Frameworks */,
@@ -291,7 +288,6 @@
 				8CA1D0B32C023D0600C39C6A /* Preview Assets.xcassets in Resources */,
 				8C9865842C062FFE004211DC /* GoogleService-Info.plist in Resources */,
 				8CA1D0B02C023D0600C39C6A /* Assets.xcassets in Resources */,
-				8C9864F02C05F6E2004211DC /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
