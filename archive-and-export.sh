@@ -4,12 +4,12 @@ CONFIG=Release
 DEST="generic/platform=iOS"
 VERSION="v1.0.0"
 
-WORKSPACE_PATH=".."
+WORKSPACE_PATH="."
 WORKSPACE="${WORKSPACE_PATH}/CatsAndModules_KaterynaVerkhohliad.xcworkspace"
 ARCHIVES="${WORKSPACE_PATH}/Archives"
 ARCHIVE_PATH="${ARCHIVES}/${VERSION}.xcarchive"
-EXPORT_OPTIONS_PLIST_TEMPLATE="exportOptionsTemplate.plist"
-EXPORT_OPTIONS_PLIST="exportOptions.plist"
+EXPORT_OPTIONS_PLIST_TEMPLATE="cmd/exportOptionsTemplate.plist"
+EXPORT_OPTIONS_PLIST="cmd/exportOptions.plist"
 INFO_PLIST="${WORKSPACE_PATH}/CatsUI/CatsUI/Info.plist"
 
 # Edit export options
