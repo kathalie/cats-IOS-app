@@ -1,0 +1,26 @@
+# For more information about this configuration visit
+# https://docs.fastlane.tools/actions/gym/#gymfile
+
+# In general, you can use the options available
+# fastlane gym --help
+
+# Remove the # in front of the line to enable the option
+
+scheme("CatsUI")
+
+sdk("iphoneos17.0")
+
+clean(true)
+
+output_directory("./output")
+output_name("CatsApp")
+
+export_options({
+  method: "development",
+  thinning: "<thin-for-all-variants>",
+  signingStyle: "manual",
+  provisioningProfiles: {
+    "ua.edu.ukma.apple-env.verkhohliad.CatsUI" => "1712dd8b-5713-4f4b-acca-8ee671c5f8bd",
+  },
+  compileBitcode: false
+})
