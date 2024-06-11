@@ -32,4 +32,9 @@ platform :ios do
       testers: "o.frankiv@ukma.edu.ua"
     )
   end
+
+  lane :take_screenshots do
+    capture_screenshots
+    frame_screenshots(white: true)
+  end
 end

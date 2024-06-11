@@ -13,12 +13,22 @@ final class CatsUIUITests: XCTestCase {
         continueAfterFailure = false
     }
 
-    func testExample() throws {
+    @MainActor func testExample() throws {
         let app = XCUIApplication()
+        setupSnapshot(app)
         app.launch()
         
-        // If the element doesn't exist, this assertion will fail
-        XCTAssertTrue(true)
+        snapshot("KaterynaVerkhohliad_MainScreen")
+
+        let alertCaption = "Allow crashlitic reports?"
+        if (app.alerts[alertCaption].exists) {
+            app.alerts[alertCaption].scrollViews.otherElements.buttons["Allow"].tap()
+        }
+        
+        let elementsQuery = app.scrollViews.otherElements
+        elementsQuery.buttons.element(boundBy: 1).tap()
+        
+        snapshot("KaterynaVerkhohliad_DetailsScreen")
     }
 
     func testLaunchPerformance() throws {
