@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "8F3926A9-C819-4231-AD97-171D002EB6FD",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:CatsUI.xcodeproj",
+        "identifier" : "8C74DE522C186F8E007D79A7",
+        "name" : "CatsUIUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

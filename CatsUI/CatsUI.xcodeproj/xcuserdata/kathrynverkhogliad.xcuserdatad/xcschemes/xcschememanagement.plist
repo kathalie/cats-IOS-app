@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>CatsUIUITests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>8C74DE522C186F8E007D79A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>8CA1D0A72C023D0500C39C6A</key>
 		<dict>
 			<key>primary</key>
