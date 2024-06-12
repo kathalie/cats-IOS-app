@@ -19,7 +19,7 @@ workflows:
             - name: Load Firebase configuration
               script: | 
                 # set -e # exit on first failed command
-                # echo $IOS_FIREBASE_SECRET > $CM_BUILD_DIR/GoogleService-Info.plist
+                # echo $IOS_FIREBASE_SECRET > /Users/builder/GoogleService-Info.plist
             - name: Build ipa for distribution
               script: | 
                 xcode-project build-ipa \
