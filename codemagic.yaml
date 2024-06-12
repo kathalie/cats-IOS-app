@@ -3,6 +3,8 @@ workflows:
         name: Cats and Modules Workflow
         max_build_duration: 120
         environment:
+            groups:
+                - firebase_credentials
             ios_signing:
                 distribution_type: development
                 bundle_identifier: ua.edu.ukma.apple-env.verkhohliad.CatsUI
@@ -14,6 +16,10 @@ workflows:
             - name: Set up code signing settings on Xcode project
               script: |
                 xcode-project use-profiles
+            - name: Load Firebase configuration
+              script: | 
+                set -e # exit on first failed command
+                echo $IOS_FIREBASE_SECRET > $CM_BUILD_DIR/ios/Runner/GoogleService-Info.plist
             - name: Build ipa for distribution
               script: | 
                 xcode-project build-ipa \
