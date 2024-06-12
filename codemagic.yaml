@@ -18,8 +18,8 @@ workflows:
                 xcode-project use-profiles
             - name: Load Firebase configuration
               script: | 
-                set -e # exit on first failed command
-                echo $IOS_FIREBASE_SECRET > $CM_BUILD_DIR/$XCODE_WORKSPACE/Runner/GoogleService-Info.plist
+                # set -e # exit on first failed command
+                # echo $IOS_FIREBASE_SECRET > $CM_BUILD_DIR/$XCODE_WORKSPACE/Runner/GoogleService-Info.plist
             - name: Build ipa for distribution
               script: | 
                 xcode-project build-ipa \
