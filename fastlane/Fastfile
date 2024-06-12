@@ -33,6 +33,5 @@ platform :ios do
 
   lane :take_screenshots do
     capture_screenshots
-    frame_screenshots(white: true)
   end
 end
