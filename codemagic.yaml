@@ -16,7 +16,8 @@ workflows:
             - name: Create GoogleService-Info.plist from environment variable
               script: |
                 set -e
-                echo $IOS_FIREBASE_SECRET | base64 --decode > "$CM_BUILD_DIR/GoogleService-Info.plist"
+                echo $IOS_FIREBASE_SECRET | base64 --decode > $CM_BUILD_DIR/GoogleService-Info.plist
+                echo $CM_BUILD_DIR/GoogleService-Info.plist
                 cp "$CM_BUILD_DIR/GoogleService-Info.plist" "$CM_BUILD_DIR/$XCODE_WORKSPACE/CatsNetworking/GoogleService-Info.plist"
             - name: Set up code signing settings on Xcode project
               script: |
