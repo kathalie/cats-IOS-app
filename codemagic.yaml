@@ -18,7 +18,6 @@ workflows:
                 BUNDLE_ID: "io.codemagic.sample.iosnative"
                 XCODE_WORKSPACE: "CatsAndModules_KaterynaVerkhohliad.xcworkspace"
                 XCODE_SCHEME: "CatsUI"
-                FIREBASE_APP_ID: "1:196550812672:ios:4042484c0cd975b616e4e5"
         scripts:
             - name: Create GoogleService-Info.plist from environment variable
               script: |
