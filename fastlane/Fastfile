@@ -17,11 +17,15 @@ default_platform(:ios)
 
 platform :ios do
   desc "Description of what the lane does"
-  lane :build_and_export do
+  lane :increment_version do
     increment_version_number(
       bump_type: "minor",
       xcodeproj: "./CatsUI/CatsUI.xcodeproj"
     )
+  end
+
+  lane :build_and_export do
+    increment_version
     gym
     firebase_app_distribution(
       service_credentials_file: "../catsandmodulesverkhohliad-29c260cf1ac3.json",

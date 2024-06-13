@@ -12,20 +12,24 @@ workflows:
                 BUNDLE_ID: "io.codemagic.sample.iosnative"
                 XCODE_WORKSPACE: "CatsAndModules_KaterynaVerkhohliad.xcworkspace"
                 XCODE_SCHEME: "CatsUI"
+                FIREBASE_APP_ID: "1:196550812672:ios:4042484c0cd975b616e4e5"
         scripts:
             - name: Create GoogleService-Info.plist from environment variable
               script: |
                 echo $IOS_FIREBASE_SECRET | base64 --decode > /Users/builder/GoogleService-Info.plist
             - name: Set up code signing settings on Xcode project
               script: |
-                xcode-project use-profiles
-            - name: Set the build version
+                xcode-project use-profiles  
+            - name: Increment build number
               script: | 
                 set -e
                 set -x
-                ls $CM_BUILD_DIR
                 cd $CM_BUILD_DIR/$XCODE_SCHEME
-                agvtool new-version -all $(($BUILD_NUMBER + 1))               
+                agvtool new-version -all $(($BUILD_NUMBER + 1))  
+            - name: Increment version number
+              script: |
+                cd $CM_BUILD_DIR/
+                fastlane increment_version             
             - name: Build ipa for distribution
               script: | 
                 xcode-project build-ipa \
@@ -41,6 +45,6 @@ workflows:
                 firebase_service_account: $FIREBASE_SERVICE_ACCOUNT
 
                 ios:
-                    app_id: 1:196550812672:ios:4042484c0cd975b616e4e5
+                    app_id: $FIREBASE_APP_ID
                     groups:
                       - naukma
