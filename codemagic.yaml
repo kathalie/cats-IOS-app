@@ -2,6 +2,12 @@ workflows:
     ios-workflow:
         name: Cats and Modules Workflow
         max_build_duration: 120
+        triggering:
+            events:
+              - push
+            branch_patterns:
+              - pattern: 'release_KaterynaVerkhohliad'
+                include: true
         environment:
             groups:
                 - firebase_credentials
