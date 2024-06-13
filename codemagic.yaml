@@ -46,5 +46,5 @@ workflows:
 
                 ios:
                     app_id: $FIREBASE_APP_ID
-                    groups:
-                      - naukma
+                    # groups:
+                    #   - naukma
