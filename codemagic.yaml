@@ -23,7 +23,7 @@ workflows:
               script: | 
                 set -e
                 set -x
-                cd $CM_BUILD_DIR
+                cd $CM_BUILD_DIR/$XCODE_WORKSPACE/$XCODE_SCHEME
                 agvtool new-version -all $(($BUILD_NUMBER + 1))               
             - name: Build ipa for distribution
               script: | 
