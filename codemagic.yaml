@@ -36,5 +36,5 @@ workflows:
 
                 ios:
                     app_id: 1:196550812672:ios:4042484c0cd975b616e4e5
-                groups:
-                    - naukma
+                    groups:
+                      - naukma
